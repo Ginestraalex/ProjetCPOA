@@ -1,35 +1,24 @@
 #include <iostream>
 #include <string>
+#include "Utilisateur.h"
 
-class Utilisateur{
-
-public:
-
-  Utilisateur(std::string name, std::string identifier, std::string password){
+Utilisateur::Utilisateur(std::string name, std::string identifier, std::string password){
     nom = name;
     id = identifier;
     motDePasse = password;
-    
-  }
+}
   
-  std::string getNom(){
+std::string Utilisateur::getNom(){
     return nom;
-  }
+}
 
-  bool estLID(std::string str)
-  {
+bool Utilisateur::estLID(std::string str){
     return !id.compare(str);
-  }
+}
 
-  bool estLeMDP(std::string str){
+bool Utilisateur::estLeMDP(std::string str){
     return !motDePasse.compare(str);
-  }
-
-private:
-  std::string nom;
-  std::string id;
-  std::string motDePasse;
-};
+}
 
 int main(){
   Utilisateur util("monNom", "monID", "123");
