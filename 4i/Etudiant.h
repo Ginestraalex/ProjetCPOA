@@ -6,7 +6,5 @@
 
 class Etudiant : public Utilisateur{
     
-public:
-    Etudiant(std::string name, std::string identifier, std::string password);
 };
 #endif

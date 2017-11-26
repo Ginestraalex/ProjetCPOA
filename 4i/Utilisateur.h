@@ -6,7 +6,7 @@
 class Utilisateur{
     
 public:
-    Utilisateur();
+    
     Utilisateur(std::string name, std::string identifier, std::string password);
     
     std::string getNom();
@@ -15,7 +15,7 @@ public:
     
     bool estLeMDP(std::string str);
     
-protected:
+private:
     std::string nom;
     std::string id;
     std::string motDePasse;

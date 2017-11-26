@@ -1,6 +1,9 @@
 #include <iostream>
 #include "Enseignant.h"
 
-int main(){
-    return 0;
+Enseignant::Enseignant(std::string name, std::string identifier, std::string password){
+    nom = name;
+    id = identifier;
+    motDePasse = password;
 }
+

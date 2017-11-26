@@ -6,8 +6,5 @@
 
 class Enseignant : public Utilisateur{
     
-public:
-    Enseignant(std::string name, std::string identifier, std::string password);
-
 };
 #endif
