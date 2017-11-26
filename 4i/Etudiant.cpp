@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Etudiant.h"
 
-int main(){
-    return 0;
+Etudiant::Etudiant(std::string name, std::string identifier, std::string password){
+    nom = name;
+    id = identifier;
+    motDePasse = password;
 }

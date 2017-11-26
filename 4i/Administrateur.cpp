@@ -1,7 +1,9 @@
 #include <iostream>
 #include "Administrateur.h"
 
-int main(){
-    
-    return 0;
+Administrateur::Administrateur(std::string name, std::string identifier, std::string password){
+    nom = name;
+    id = identifier;
+    motDePasse = password;
 }
+
