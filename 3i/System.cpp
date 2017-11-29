@@ -43,27 +43,32 @@ System::System(Utilisateur::Utilisateur lesUtilisateurs[], int nbUtilisateurs){
     }
 }
 
-bool connexion(std::string id, std::string pwd){
+bool System::connexion(std::string fonction, std::string id, std::string pwd){
     int i = 0;
     bool pasTrouve = true;
     while (i < listeDesUtilisateurs.size() && pasTrouve){
-        if((listeDesUtilisateurs[i].estLID(id) && listeDesUtilisateurs[i].estLeMPD(pwd)){
+        if(listeDesUtilisateurs[i].estLID(id) && listeDesUtilisateurs[i].estLeMDP(pwd)){
             pasTrouve = false;
             utilisateurCourrant = listeDesUtilisateurs[i];
             return true;
         }
-        i++
+        i++;
     }
     return false;
 }
 
 
 int main(){
-    std::cout << "rapport d\'erreur pour le fichier listeValide.txt" << std::endl;
+    bool res;
+    std::cout << "Test avec une liste valide:" << std::endl << "rapport d\'erreur pour le fichier listeValide.txt" << std::endl;
     System *monSys = new System("listeValide.txt");
+    res = (*monSys).connexion("AMDINISTRATEUR", "adminID1", "adminMDP1");
+    std::cout << "le resultat de la connexion de amdinID1 avec le mdp adminMDP1 est : " << res << std::endl;
+    res = (*monSys).connexion("AMDINISTRATEUR", "chien", "chat");
+    std::cout << "le resultat de la connexion de chien avec le mdp chat est : " << res << std::endl;
     delete monSys;
-    std::cout << "rapport d\'erreur pour le fichier listeErronee.txt" << std::endl;
+    std::cout << std::endl << "Test avec une liste non valide" << std::endl << "rapport d\'erreur pour le fichier listeErronee.txt" << std::endl;
     monSys = new System("listeErronee.txt");
-    
+    delete monSys;
     return 0;
 }

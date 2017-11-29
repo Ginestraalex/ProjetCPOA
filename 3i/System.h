@@ -16,7 +16,6 @@ public:
     
     bool connexion(std::string fonction, std::string id, std::string pwd);
     
-private:
     Utilisateur utilisateurCourrant;
     std::vector<Utilisateur> listeDesUtilisateurs;
 };
