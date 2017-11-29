@@ -8,8 +8,7 @@ System::System(){
 
 System::System(std::string nomFichier){
     std::string fonction, nom, id, mdp;
-    std::ifstream monFlux("./"+nomFichier);
-
+    std::ifstream monFlux(nomFichier);
     if(monFlux){ //teste  pour voir si le flux s'est ouvert
         while(monFlux >> fonction){
             if(monFlux >> nom && monFlux >> id && monFlux >> mdp){
@@ -44,9 +43,32 @@ System::System(Utilisateur::Utilisateur lesUtilisateurs[], int nbUtilisateurs){
     }
 }
 
+bool System::connexion(std::string fonction, std::string id, std::string pwd){
+    int i = 0;
+    bool pasTrouve = true;
+    while (i < listeDesUtilisateurs.size() && pasTrouve){
+        if(listeDesUtilisateurs[i].estLID(id) && listeDesUtilisateurs[i].estLeMDP(pwd)){
+            pasTrouve = false;
+            utilisateurCourrant = listeDesUtilisateurs[i];
+            return true;
+        }
+        i++;
+    }
+    return false;
+}
+
 
 int main(){
-    
-    
+    bool res;
+    std::cout << "Test avec une liste valide:" << std::endl << "rapport d\'erreur pour le fichier listeValide.txt" << std::endl;
+    System *monSys = new System("listeValide.txt");
+    res = (*monSys).connexion("AMDINISTRATEUR", "adminID1", "adminMDP1");
+    std::cout << "le resultat de la connexion de amdinID1 avec le mdp adminMDP1 est : " << res << std::endl;
+    res = (*monSys).connexion("AMDINISTRATEUR", "chien", "chat");
+    std::cout << "le resultat de la connexion de chien avec le mdp chat est : " << res << std::endl;
+    delete monSys;
+    std::cout << std::endl << "Test avec une liste non valide" << std::endl << "rapport d\'erreur pour le fichier listeErronee.txt" << std::endl;
+    monSys = new System("listeErronee.txt");
+    delete monSys;
     return 0;
 }

@@ -14,7 +14,8 @@ public:
     System(std::string nomFichier);
     System(Utilisateur::Utilisateur lesUtilisateurs[], int nbUtilisateurs);
     
-private:
+    bool connexion(std::string fonction, std::string id, std::string pwd);
+    
     Utilisateur utilisateurCourrant;
     std::vector<Utilisateur> listeDesUtilisateurs;
 };

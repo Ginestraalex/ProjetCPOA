@@ -1,5 +1,5 @@
 Projet:
-	g++ -Wall Utilisateur.cpp ; g++ -Wall System.cpp ; rm a.out
+	g++ -Wall System.cpp
 
 clean:
 	rm *.out
