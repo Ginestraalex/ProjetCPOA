@@ -13,7 +13,7 @@ class System{
 public:
     System();
     System(std::string nomFichier);
-    System(Utilisateur::Utilisateur lesUtilisateurs[], int nbUtilisateurs);
+    System(Utilisateur lesUtilisateurs[], int nbUtilisateurs);
     
     bool connexion(std::string fonction, std::string id, std::string pwd);
     void ajouterCours(Cours cours);
