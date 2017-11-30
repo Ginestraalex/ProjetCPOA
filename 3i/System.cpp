@@ -36,7 +36,11 @@ std::ifstream monFlux(nomFichier.c_str());
     }
 }
 
+<<<<<<< HEAD
 System::System (Utilisateur lesUtilisateurs[], int nbUtilisateurs){
+=======
+System::System(Utilisateur lesUtilisateurs[], int nbUtilisateurs){
+>>>>>>> 1cf0bc5b9b117d748f77dcb7c3c1c62f8533ae79
     int i;
     for(i = 0 ; i < nbUtilisateurs ; i++){
         listeDesUtilisateurs.push_back(lesUtilisateurs[i]);
