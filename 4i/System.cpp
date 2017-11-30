@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
 #include "System.h"
 
 System::System(){
@@ -23,7 +24,7 @@ System::System(std::string nomFichier){
                 }
                 else{
                     std::cout << "Les donnees sont corrompue" << std::endl;
-                    std::exit(0);
+                    exit(0);
                 }
             }
             else{
