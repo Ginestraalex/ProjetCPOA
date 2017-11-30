@@ -1,5 +1,5 @@
 Projet:
-	g++ -Wall System.cpp
+	g++ -Wall Cours.cpp
 
 clean:
 	rm *.out

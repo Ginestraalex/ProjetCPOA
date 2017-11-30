@@ -57,6 +57,19 @@ bool System::connexion(std::string fonction, std::string id, std::string pwd){
     return false;
 }
 
+void System::ajouterCours(Cours cours){
+    listeDesCours.push_back(cours);
+}
+
+Cours System::getCours(int index){
+    if(index < listeDesCours.size() && index >= 0)
+    {
+        return listeDesCours[index];
+    }
+    std::cout << "erreur lors de la recuperation du cours" << std::endl;
+    exit(1);
+}
+
 
 int main(){
     bool res;
@@ -66,6 +79,8 @@ int main(){
     std::cout << "le resultat de la connexion de amdinID1 avec le mdp adminMDP1 est : " << res << std::endl;
     res = (*monSys).connexion("AMDINISTRATEUR", "chien", "chat");
     std::cout << "le resultat de la connexion de chien avec le mdp chat est : " << res << std::endl;
+    (*monSys).ajouterCours(Cours("leCours","nomProf"));
+    std::cout << "le nom du cours est: " << (*monSys).getCours(0).getNomCours() << " le nom du prof referent pour ce cours est: " << (*monSys).getCours(0).getNomProfReferent() << std::endl;
     delete monSys;
     std::cout << std::endl << "Test avec une liste non valide" << std::endl << "rapport d\'erreur pour le fichier listeErronee.txt" << std::endl;
     monSys = new System("listeErronee.txt");
