@@ -9,7 +9,7 @@ System::System(){
 
 System::System(std::string nomFichier){
     std::string fonction, nom, id, mdp;
-    std::ifstream monFlux(nomFichier);
+    std::ifstream monFlux(nomFichier.c_str());
     if(monFlux){ //teste  pour voir si le flux s'est ouvert
         while(monFlux >> fonction){
             if(monFlux >> nom && monFlux >> id && monFlux >> mdp){
@@ -37,7 +37,7 @@ System::System(std::string nomFichier){
     }
 }
 
-System::System(Utilisateur::Utilisateur lesUtilisateurs[], int nbUtilisateurs){
+System::System(Utilisateur lesUtilisateurs[], int nbUtilisateurs){
     int i;
     for(i = 0 ; i < nbUtilisateurs ; i++){
         listeDesUtilisateurs.push_back(lesUtilisateurs[i]);

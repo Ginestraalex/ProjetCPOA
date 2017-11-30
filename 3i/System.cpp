@@ -36,7 +36,7 @@ System::System(std::string nomFichier){
     }
 }
 
-System::System(Utilisateur::Utilisateur lesUtilisateurs[], int nbUtilisateurs){
+System::System(Utilisateur lesUtilisateurs[], int nbUtilisateurs){
     int i;
     for(i = 0 ; i < nbUtilisateurs ; i++){
         listeDesUtilisateurs.push_back(lesUtilisateurs[i]);
