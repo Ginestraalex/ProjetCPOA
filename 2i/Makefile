@@ -1,4 +1,4 @@
 Projet:
-	g++ -Wall Utilisateur.cpp
+	g++ -Wall System.cpp
 clean:
 	rm System

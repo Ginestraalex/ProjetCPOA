@@ -10,9 +10,7 @@ public:
     Utilisateur(std::string name, std::string identifier, std::string password);
     
     std::string getNom();
-    
     bool estLID(std::string str);
-    
     bool estLeMDP(std::string str);
     
 protected:
