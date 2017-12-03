@@ -24,6 +24,11 @@ bool Utilisateur::estLeMDP(std::string str){
     return !motDePasse.compare(str);
 }
 
+
+std::string Utilisateur::toString(){
+    return "nom: " + nom + " id: " + id + " mdp: " + motDePasse;
+}
+
 /*int main(){
   Utilisateur util("monNom", "monID", "123");
   std::cout << "mon nom est " << util.getNom() << std::endl;

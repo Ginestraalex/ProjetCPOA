@@ -12,12 +12,12 @@ class System{
 public:
     System();
     System(std::string nomFichier);
-    System(Utilisateur lesUtilisateurs[], int nbUtilisateurs);
+    System(Utilisateur *lesUtilisateurs[], int nbUtilisateurs);
     
     bool connexion(std::string fonction, std::string id, std::string pwd);
     
-    Utilisateur utilisateurCourrant;
-    std::vector<Utilisateur> listeDesUtilisateurs;
+    Utilisateur* utilisateurCourrant;
+    std::vector<Utilisateur*> listeDesUtilisateurs;
 };
 
 #endif

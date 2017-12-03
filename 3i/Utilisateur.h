@@ -12,6 +12,7 @@ public:
     std::string getNom();
     bool estLID(std::string str);
     bool estLeMDP(std::string str);
+    std::string toString();
     
 protected:
     std::string nom;

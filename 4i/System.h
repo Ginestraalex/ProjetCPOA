@@ -13,15 +13,15 @@ class System{
 public:
     System();
     System(std::string nomFichier);
-    System(Utilisateur lesUtilisateurs[], int nbUtilisateurs);
+    System(Utilisateur* lesUtilisateurs[], int nbUtilisateurs);
     
     bool connexion(std::string fonction, std::string id, std::string pwd);
-    void ajouterCours(Cours cours);
+    void ajouterCours(Cours* cours);
     Cours getCours(int index);
     
-    Utilisateur utilisateurCourrant;
-    std::vector<Utilisateur> listeDesUtilisateurs;
-    std::vector<Cours> listeDesCours;
+    Utilisateur* utilisateurCourrant;
+    std::vector<Utilisateur*> listeDesUtilisateurs;
+    std::vector<Cours*> listeDesCours;
 };
 
 #endif
