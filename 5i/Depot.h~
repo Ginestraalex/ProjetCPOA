@@ -1,0 +1,21 @@
+ifndef DEF_COURS
+#define DEF_COURS
+#include "Administrateur.cpp"
+#include "Enseignant.cpp"
+#include "Etudiant.cpp"
+#include <iostream>
+#include <string>
+
+class Depot{
+    
+public:
+    Depot();
+    Depot(std::string);
+    
+    
+protected:
+    std::string nomDepot;
+    std::;
+};
+
+#endif

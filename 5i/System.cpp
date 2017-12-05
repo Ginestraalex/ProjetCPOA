@@ -1,7 +1,20 @@
 #include "System.h"
+#include <sstream>
 
 System::System(){
 }
+
+
+template <typename T> std::string to_string(T value){
+      //create an output string stream
+      std::ostringstream os ;
+
+      //throw the value into the string stream
+      os << value ;
+
+      //convert the string stream into a string and return
+      return os.str() ;
+    }
 
 System::System(std::string nomFichier){
     std::string fonction, nom, id, mdp;
@@ -88,11 +101,11 @@ void System::proposerCours(std::string nomCours, Enseignant* enseignantReferent)
 }
 
 void System::afficherListePropositionsCours(){
-    std::string liste("la liste des proposition de cours est la suivate \n");
+    std::string liste("la liste des proposition de cours est la suivante \n");
     int i, tailleListe;
     tailleListe = listePropositionCours.size();
     for(i = 0 ; i < tailleListe ; i++){
-        liste.append("index: " + std::to_string(i) + " nom: " + listePropositionCours[i]->getNomCours() +"\n");
+        liste.append("index: " + to_string(i) + " nom: " + listePropositionCours[i]->getNomCours() +"\n");
     }
     std::cout << liste << std::endl;
 }
