@@ -42,8 +42,9 @@ System::System(Utilisateur *lesUtilisateurs[], int nbUtilisateurs){
 
 bool System::connexion(std::string fonction, std::string id, std::string pwd){
     int i = 0;
+    int taille = listeDesUtilisateurs.size();
     bool pasTrouve = true;
-    while (i < listeDesUtilisateurs.size() && pasTrouve){
+    while (i < taille && pasTrouve){
         if(listeDesUtilisateurs[i]->estLID(id) && listeDesUtilisateurs[i]->estLeMDP(pwd)){
             pasTrouve = false;
             utilisateurCourrant = listeDesUtilisateurs[i];
@@ -59,7 +60,7 @@ void System::ajouterCours(Cours *cours){
 }
 
 Cours System::getCours(int index){
-    if(index < listeDesCours.size() && index >= 0)
+  if(index < (int)listeDesCours.size() && index >= 0)
     {
         return *listeDesCours[index];
     }
@@ -69,8 +70,9 @@ Cours System::getCours(int index){
 
 Cours System::getCours(std::string nomCours){
     int i = 0;
+    int taille = listeDesCours.size();
     bool pasTrouve = true;
-    while(i < listeDesCours.size() && pasTrouve){
+    while(i < taille && pasTrouve){
         if(!listeDesCours[i]->getNomCours().compare(nomCours)){
             return *listeDesCours[i];
         }
@@ -99,10 +101,12 @@ void System::afficherListePropositionsCours(){
 
 void System::supp(){
     int i;
-    for( i = 0 ; i < listeDesUtilisateurs.size() ; i++){
+    int taille = listeDesUtilisateurs.size();
+    for( i = 0 ; i < taille ; i++){
         delete listeDesUtilisateurs[i];
     }
-    for( i = 0 ; i < listeDesCours.size() ; i++){
+    taille = listeDesCours.size();
+    for( i = 0 ; i < taille ; i++){
         delete listeDesCours[i];
     }
 }
