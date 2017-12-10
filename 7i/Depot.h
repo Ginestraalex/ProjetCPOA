@@ -1,5 +1,6 @@
 #ifndef DEF_DEPOT
 #define DEF_DEPOT
+#include "Administrateur.cpp"
 #include "Enseignant.cpp"
 #include "Etudiant.cpp"
 #include "fonction.cpp"

@@ -1,6 +1,5 @@
 #ifndef DEF_COURS
 #define DEF_COURS
-#include "Administrateur.cpp"
 #include "Depot.cpp"
 #include <iostream>
 #include <string>
