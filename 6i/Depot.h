@@ -1,5 +1,5 @@
-ifndef DEF_COURS
-#define DEF_COURS
+#ifndef DEF_DEPOT
+#define DEF_DEPOT
 #include "Enseignant.cpp"
 #include "Etudiant.cpp"
 #include <iostream>
@@ -7,18 +7,23 @@ ifndef DEF_COURS
 #include <time.h>
 #include <ctime>
 
+struct depotEtudiant{
+    Etudiant* etudiant;
+    std::string nomFichier;
+};
+
 class Depot{
     
 public:
     Depot();
-    Depot(std::string,std::int,std::int);
+    Depot(std::string nomDuDepot, struct tm DOuverture, struct tm DFermeture);
     
+    void ajouterDepot(std::string nomFichier, Etudiant* etud);
     
 protected:
     std::string nomDepot;
-    std::struct tm DateOuverture;
-    std::struct tm DateFermeture;
-    
+    struct tm dateOuverture;
+    struct tm dateFermeture;
+    std::vector<struct depotEtudiant> listeDepots;
 };
-
 #endif

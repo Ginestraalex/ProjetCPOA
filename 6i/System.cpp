@@ -6,15 +6,15 @@ System::System(){
 
 
 template <typename T> std::string to_string(T value){
-      //create an output string stream
-      std::ostringstream os ;
+    //create an output string stream
+    std::ostringstream os;
 
-      //throw the value into the string stream
-      os << value ;
+    //throw the value into the string stream
+    os << value;
 
-      //convert the string stream into a string and return
-      return os.str() ;
-    }
+    //convert the string stream into a string and return
+    return os.str();
+}
 
 System::System(std::string nomFichier){
     std::string fonction, nom, id, mdp;
@@ -112,19 +112,11 @@ void System::afficherListeCours(){
 }
 
 void System::afficherListePropositionsCours(){
-<<<<<<< HEAD
-    std::cout << "la liste des proposition de cours est la suivate" << std::endl;
+    std::cout << "la liste des propositions de cours est la suivate" << std::endl;
     int i, tailleListe;
     tailleListe = listePropositionCours.size();
     for(i = 0 ; i < tailleListe ; i++){
         std::cout << std::to_string(i) + " COURS = " +listePropositionCours[i]->getNomCours() + " PROF REFERENT = "+listePropositionCours[i]->getNomProfReferent() << std::endl;
-=======
-    std::string liste("la liste des proposition de cours est la suivante \n");
-    int i, tailleListe;
-    tailleListe = listePropositionCours.size();
-    for(i = 0 ; i < tailleListe ; i++){
-        liste.append("index: " + to_string(i) + " nom: " + listePropositionCours[i]->getNomCours() +"\n");
->>>>>>> 90f2820e4de99e6622505e54d2834d48847348b9
     }
     std::cout << std::endl;
 }

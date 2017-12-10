@@ -1,8 +1,7 @@
 #ifndef DEF_COURS
 #define DEF_COURS
 #include "Administrateur.cpp"
-#include "Enseignant.cpp"
-#include "Etudiant.cpp"
+#include "Depot.cpp"
 #include <iostream>
 #include <string>
 
@@ -14,6 +13,7 @@ public:
     
     std::string getNomCours();
     std::string getNomProfReferent();
+    
     
 protected:
     std::string nomCours;
