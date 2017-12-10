@@ -1,9 +1,0 @@
-#include "Depot.h"
-
-Depot::Depot(){
-
-}
-
-Depot::Depot(std::string nom,){
-
-}

@@ -11,6 +11,7 @@ public:
     
     std::string getNomCours();
     std::string getNomProfReferent();
+    Enseignant* getProfReferent();
     
 protected:
     std::string nomCours;
