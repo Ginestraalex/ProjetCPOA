@@ -13,11 +13,14 @@ public:
     
     std::string getNomCours();
     std::string getNomProfReferent();
-    
+    void creerDepot(std::string nomDepot, struct tm ouverture, struct tm fermeture);
+    void deposer(int index, Etudiant* etud, std::string nomFichier);
+    void afficherListeDepot();
     
 protected:
     std::string nomCours;
     Enseignant* profReferent;
+    std::vector<Depot*> listeDepot;
 };
 
 #endif

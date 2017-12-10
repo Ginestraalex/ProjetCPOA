@@ -5,17 +5,6 @@ System::System(){
 }
 
 
-template <typename T> std::string to_string(T value){
-    //create an output string stream
-    std::ostringstream os;
-
-    //throw the value into the string stream
-    os << value;
-
-    //convert the string stream into a string and return
-    return os.str();
-}
-
 System::System(std::string nomFichier){
     std::string fonction, nom, id, mdp;
     std::ifstream monFlux(nomFichier.c_str());
@@ -178,6 +167,23 @@ int main(){
     std::cout << "le resultat de la connexion avec la fonction administrateur de chien avec le mdp chat est : " << res << std::endl;
     monSys->ajouterCours(new Cours("leCours",new Enseignant("nomProf","idProf","mdpProf")));
     std::cout << "le nom du cours est: " << monSys->getCours(0).getNomCours() << " le nom du prof referent pour ce cours est: " << monSys->getCours(0).getNomProfReferent() << std::endl;
+    struct tm ouv, ferm;
+    ouv.tm_sec = 0;
+    ouv.tm_min = 0;
+    ouv.tm_hour = 0;
+    ouv.tm_mday = 0;
+    ouv.tm_mon = 0;
+    ouv.tm_year = 100;
+    
+    ferm.tm_sec = 0;
+    ferm.tm_min = 0;
+    ferm.tm_hour = 0;
+    ferm.tm_mday = 0;
+    ferm.tm_mon = 0;
+    ferm.tm_year = 100;
+    monSys->getCours(0).creerDepot("Depot 1", ouv, ferm);
+    monSys->getCours(0).afficherListeDepot();
+    
     monSys->supp();
     delete monSys;
     return 0;

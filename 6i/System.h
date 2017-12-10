@@ -17,9 +17,10 @@ public:
     Cours getCours(int index);
     Cours getCours(std::string nomCours);
     void proposerCours(std::string nomCours, Enseignant* enseignantReferent);
+    void accepterPropositionCours(int index);
+    
     void afficherListeCours();
     void afficherListePropositionsCours();
-    void accepterPropositionCours(int index);
     
     void supp();
     

@@ -18,7 +18,9 @@ public:
     Depot();
     Depot(std::string nomDuDepot, struct tm DOuverture, struct tm DFermeture);
     
+    bool estEnRetard();
     void ajouterDepot(std::string nomFichier, Etudiant* etud);
+    std::string toString();
     
 protected:
     std::string nomDepot;
