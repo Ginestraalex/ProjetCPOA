@@ -87,14 +87,32 @@ void System::proposerCours(std::string nomCours, Enseignant* enseignantReferent)
     listePropositionCours.push_back(new PropositionDeCours(nomCours, enseignantReferent));
 }
 
+
+void System::afficherListeCours(){
+    int i, taille;
+    taille = listeDesCours.size();
+    std::cout << "Liste des cours du systeme:" << std::endl;
+    for(i = 0 ; i < taille ; i++){
+        std::cout << std::to_string(i)+": COURS = " +listeDesCours[i]->getNomCours() + "   PROF REFERENT = " +listeDesCours[i]->getNomProfReferent() << std::endl;
+    }
+    std::cout << std::endl;
+}
+
 void System::afficherListePropositionsCours(){
-    std::string liste("la liste des proposition de cours est la suivate \n");
+    std::cout << "la liste des proposition de cours est la suivate" << std::endl;
     int i, tailleListe;
     tailleListe = listePropositionCours.size();
     for(i = 0 ; i < tailleListe ; i++){
-        liste.append("index: " + std::to_string(i) + " nom: " + listePropositionCours[i]->getNomCours() +"\n");
+        std::cout << std::to_string(i) + " COURS = " +listePropositionCours[i]->getNomCours() + " PROF REFERENT = "+listePropositionCours[i]->getNomProfReferent() << std::endl;
     }
-    std::cout << liste << std::endl;
+    std::cout << std::endl;
+}
+
+
+void System::accepterPropositionCours(int index){
+    ajouterCours(new Cours(listePropositionCours[index]->getNomCours(),listePropositionCours[index]->getProfReferent()));
+    delete listePropositionCours[index];
+    listePropositionCours.erase(listePropositionCours.begin() + index);
 }
 
 
@@ -109,10 +127,15 @@ void System::supp(){
     for( i = 0 ; i < taille ; i++){
         delete listeDesCours[i];
     }
+    taille = listePropositionCours.size();
+    for( i = 0 ; i < taille ; i++){
+        delete listePropositionCours[i];
+    }
 }
 
 
 int main(){
+    std::cout << "===Test numero 1 ===" << std::endl;
     int i;
     Utilisateur *lesUtil[3];
     lesUtil[0] = new Utilisateur("nom1","id1","mdp1");
@@ -122,12 +145,17 @@ int main(){
         std::cout << lesUtil[i]->toString() << std::endl;
     }
     System *monSys = new System(lesUtil, 3);
-    monSys->proposerCours("nom du cours", new Enseignant("Duflot","idProf","mdpProf"));
+    monSys->proposerCours("Reseau", new Enseignant("Duflot","idProf","mdpProf"));
+    monSys->afficherListeCours();
+    monSys->afficherListePropositionsCours();
+    std::cout << "----validation du cours----" << std::endl;
+    monSys->accepterPropositionCours(0);
+    monSys->afficherListeCours();
     monSys->afficherListePropositionsCours();
     monSys->supp();
     delete monSys;
    
-
+    std::cout << "===Test numero 2 ===" << std::endl;
     bool res;
     std::cout << "Test avec une liste valide:" << std::endl << "rapport d\'erreur pour le fichier listeValide.txt" << std::endl;
     monSys = new System("listeValide.txt");
@@ -137,10 +165,6 @@ int main(){
     std::cout << "le resultat de la connexion avec la fonction administrateur de chien avec le mdp chat est : " << res << std::endl;
     monSys->ajouterCours(new Cours("leCours",new Enseignant("nomProf","idProf","mdpProf")));
     std::cout << "le nom du cours est: " << monSys->getCours(0).getNomCours() << " le nom du prof referent pour ce cours est: " << monSys->getCours(0).getNomProfReferent() << std::endl;
-    monSys->supp();
-    delete monSys;
-    std::cout << std::endl << "Test avec une liste non valide:" << std::endl << "rapport d\'erreur pour le fichier listeErronee.txt" << std::endl;
-    monSys = new System("listeErronee.txt");
     monSys->supp();
     delete monSys;
     return 0;

@@ -18,4 +18,7 @@ std::string PropositionDeCours::getNomProfReferent(){
     return profReferent->getNom();
 }
 
+Enseignant* PropositionDeCours::getProfReferent(){
+    return profReferent;
+}
 
