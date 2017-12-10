@@ -61,28 +61,28 @@ void System::ajouterCours(Cours *cours){
     listeDesCours.push_back(cours);
 }
 
-Cours System::getCours(int index){
+Cours* System::getCours(int index){
   if(index < (int)listeDesCours.size() && index >= 0)
     {
-        return *listeDesCours[index];
+        return listeDesCours[index];
     }
     std::cout << "erreur lors de la recuperation du cours" << std::endl;
     exit(1);
 }
 
-Cours System::getCours(std::string nomCours){
+Cours* System::getCours(std::string nomCours){
     int i = 0;
     int taille = listeDesCours.size();
     bool pasTrouve = true;
     while(i < taille && pasTrouve){
         if(!listeDesCours[i]->getNomCours().compare(nomCours)){
-            return *listeDesCours[i];
+            return listeDesCours[i];
         }
         i++;
     }
     std::cout << "le cours demande n existe pas" << std::endl;
     Cours *coursTemp = new Cours();
-    return *coursTemp;
+    return coursTemp;
 }
 
 void System::proposerCours(std::string nomCours, Enseignant* enseignantReferent){
@@ -154,19 +154,6 @@ int main(){
     monSys->accepterPropositionCours(0);
     monSys->afficherListeCours();
     monSys->afficherListePropositionsCours();
-    monSys->supp();
-    delete monSys;
-   
-    std::cout << "===Test numero 2 ===" << std::endl;
-    bool res;
-    std::cout << "Test avec une liste valide:" << std::endl << "rapport d\'erreur pour le fichier listeValide.txt" << std::endl;
-    monSys = new System("listeValide.txt");
-    res = monSys->connexion("AMDINISTRATEUR", "adminID1", "adminMDP1");
-    std::cout << "le resultat de la connexion avec la fonction administrateur de amdinID1 avec le mdp adminMDP1 est : " << res << std::endl;
-    res = monSys->connexion("AMDINISTRATEUR", "chien", "chat");
-    std::cout << "le resultat de la connexion avec la fonction administrateur de chien avec le mdp chat est : " << res << std::endl;
-    monSys->ajouterCours(new Cours("leCours",new Enseignant("nomProf","idProf","mdpProf")));
-    std::cout << "le nom du cours est: " << monSys->getCours(0).getNomCours() << " le nom du prof referent pour ce cours est: " << monSys->getCours(0).getNomProfReferent() << std::endl;
     struct tm ouv, ferm;
     ouv.tm_sec = 0;
     ouv.tm_min = 0;
@@ -180,9 +167,22 @@ int main(){
     ferm.tm_hour = 0;
     ferm.tm_mday = 0;
     ferm.tm_mon = 0;
-    ferm.tm_year = 100;
-    monSys->getCours(0).creerDepot("Depot 1", ouv, ferm);
-    monSys->getCours(0).afficherListeDepot();
+    ferm.tm_year = 200;
+    monSys->getCours(0)->creerDepot("Depot 1", ouv, ferm);
+    monSys->getCours(0)->afficherListeDepot();
+    monSys->supp();
+    delete monSys;
+   
+    std::cout << "===Test numero 2 ===" << std::endl;
+    bool res;
+    std::cout << "Test avec une liste valide:" << std::endl << "rapport d\'erreur pour le fichier listeValide.txt" << std::endl;
+    monSys = new System("listeValide.txt");
+    res = monSys->connexion("AMDINISTRATEUR", "adminID1", "adminMDP1");
+    std::cout << "le resultat de la connexion avec la fonction administrateur de amdinID1 avec le mdp adminMDP1 est : " << res << std::endl;
+    res = monSys->connexion("AMDINISTRATEUR", "chien", "chat");
+    std::cout << "le resultat de la connexion avec la fonction administrateur de chien avec le mdp chat est : " << res << std::endl;
+    monSys->ajouterCours(new Cours("leCours",new Enseignant("nomProf","idProf","mdpProf")));
+    monSys->afficherListeCours();
     
     monSys->supp();
     delete monSys;

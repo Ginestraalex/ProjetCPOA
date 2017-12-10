@@ -53,8 +53,7 @@ bool Depot::estEnRetard(){
 }
 
 std::string Depot::toString(){
-    std::string str = "" + nomDepot;
-    return str;
+    return nomDepot;
 }
 
 

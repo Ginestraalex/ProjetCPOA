@@ -14,8 +14,8 @@ public:
     
     bool connexion(std::string fonction, std::string id, std::string pwd);
     void ajouterCours(Cours* cours);
-    Cours getCours(int index);
-    Cours getCours(std::string nomCours);
+    Cours* getCours(int index);
+    Cours* getCours(std::string nomCours);
     void proposerCours(std::string nomCours, Enseignant* enseignantReferent);
     void accepterPropositionCours(int index);
     

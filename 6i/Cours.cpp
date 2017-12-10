@@ -19,7 +19,8 @@ std::string Cours::getNomProfReferent(){
 }
 
 void Cours::creerDepot(std::string nomDepot, struct tm ouverture, struct tm fermeture){
-    listeDepot.push_back(new Depot(nomDepot, ouverture, fermeture));
+    Depot dep(nomDepot, ouverture, fermeture);
+    listeDepot.push_back(&dep);
 }
 
 void Cours::deposer(int index, Etudiant* etud, std::string nomFichier){
@@ -29,7 +30,7 @@ void Cours::deposer(int index, Etudiant* etud, std::string nomFichier){
 void Cours::afficherListeDepot(){
     int i, taille;
     taille = listeDepot.size();
-    std::cout << "Liste des depots:" +to_string(taille)<< std::endl;
+    std::cout << "Liste des depots:" << std::endl;
     for(i = 0 ; i < taille ; i++){
         std::cout << listeDepot[i]->toString() << std::endl;
     }
