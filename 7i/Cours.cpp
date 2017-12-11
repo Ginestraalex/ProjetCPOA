@@ -45,7 +45,8 @@ void Cours::afficherListeDepot(){
 }
 
 void Cours::afficherDepotsEffectues(int index){
-    if(listeDepot.size() >= index && index >= 0){
+  int taille = listeDepot.size();
+    if(taille >= index && index >= 0){
         listeDepot[index]->afficherLesDepots();
     }
 }

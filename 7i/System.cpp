@@ -95,7 +95,7 @@ void System::afficherListeCours(){
     taille = listeDesCours.size();
     std::cout << "Liste des cours du systeme:" << std::endl;
     for(i = 0 ; i < taille ; i++){
-        std::cout << std::to_string(i)+": COURS = " +listeDesCours[i]->getNomCours() + "   PROF REFERENT = " +listeDesCours[i]->getNomProfReferent() << std::endl;
+        std::cout << to_string(i)+": COURS = " +listeDesCours[i]->getNomCours() + "   PROF REFERENT = " +listeDesCours[i]->getNomProfReferent() << std::endl;
     }
     std::cout << std::endl;
 }
@@ -105,7 +105,7 @@ void System::afficherListePropositionsCours(){
     int i, tailleListe;
     tailleListe = listePropositionCours.size();
     for(i = 0 ; i < tailleListe ; i++){
-        std::cout << std::to_string(i) + " COURS = " +listePropositionCours[i]->getNomCours() + " PROF REFERENT = "+listePropositionCours[i]->getNomProfReferent() << std::endl;
+        std::cout << to_string(i) + " COURS = " +listePropositionCours[i]->getNomCours() + " PROF REFERENT = "+listePropositionCours[i]->getNomProfReferent() << std::endl;
     }
     std::cout << std::endl;
 }
