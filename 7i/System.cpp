@@ -191,5 +191,6 @@ int main(){
     
     monSys->supp();
     delete monSys;
+    std::cout << "=== fin des tests ===" << std::endl;
     return 0;
 }
