@@ -21,7 +21,6 @@ public:
     
     void afficherListeCours();
     void afficherListePropositionsCours();
-    void sauvegarderIdentifiants();
     
     void supp();
     

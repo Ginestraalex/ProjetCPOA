@@ -1,8 +1,7 @@
 #include "System.h"
-#include <typeinfo>
+#include <sstream>
 
 System::System(){
-
 }
 
 
@@ -118,38 +117,6 @@ void System::accepterPropositionCours(int index){
     listePropositionCours.erase(listePropositionCours.begin() + index);
 }
 
-void System::sauvegarderIdentifiants(){
-  int i, taille;
-  std::string strNomFichier("NouvelleListeID.txt");
-  taille = listeDesUtilisateurs.size();
-  std::ifstream fichier(strNomFichier.c_str());
-  if(fichier){   // test si le fichier existe => ajout a la fin de ce fichier
-    fichier.close();
-    std::ofstream fichierSortie("NouvelleListeID.txt",std::ios::app);
-    if(fichierSortie){
-      for( i = 0 ; i < taille ; i++){
-	fichierSortie << typeid(*listeDesUtilisateurs[i]).name() << " " +listeDesUtilisateurs[i]->getStringSauvegarde() << std::endl;
-      }
-      fichierSortie.close();
-    }
-    else{
-      std::cout << "erreur dans l ouverture du fichier en ecriture" << std::endl;
-    }
-  }
-  else{
-    std::ofstream fichierSortie("NouvelleListeID.txt",std::ios::out);
-    if(fichierSortie){
-      for( i = 0 ; i < taille ; i++){
-	fichierSortie << typeid(*listeDesUtilisateurs[i]).name() << " " +listeDesUtilisateurs[i]->getStringSauvegarde() << std::endl;
-      }
-      fichierSortie.close();
-    }
-    else{
-      std::cout << "erreur dans l ouverture du fichier en ecriture" << std::endl;
-    }
-  }
-  
-}
 
 
 void System::supp(){
@@ -221,7 +188,7 @@ int main(){
     std::cout << "le resultat de la connexion avec la fonction administrateur de amdinID1 avec le mdp adminMDP1 est : " << res << std::endl;
     res = monSys->connexion("AMDINISTRATEUR", "chien", "chat");
     std::cout << "le resultat de la connexion avec la fonction administrateur de chien avec le mdp chat est : " << res << std::endl;
-    monSys->sauvegarderIdentifiants();
+    
     monSys->supp();
     delete monSys;
     std::cout << "=== fin des tests ===" << std::endl;
