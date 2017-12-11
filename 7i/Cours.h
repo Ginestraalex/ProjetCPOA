@@ -1,8 +1,6 @@
 #ifndef DEF_COURS
 #define DEF_COURS
-#include "Depot.cpp"
-#include <iostream>
-#include <string>
+#include "Inscription.cpp"
 
 class Cours{
     
@@ -16,11 +14,13 @@ public:
     void deposer(int index, Etudiant* etud, std::string nomFichier);
     void afficherListeDepot();
     void afficherDepotsEffectues(int index);
+    void setInscription(int nbMaxEtud, struct tm ouverture, struct tm fermeture);
     void supp();
     
 protected:
     std::string nomCours;
     Enseignant* profReferent;
+    Inscription* inscription;
     std::vector<Depot*> listeDepot;
 };
 

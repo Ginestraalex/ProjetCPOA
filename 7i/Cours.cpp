@@ -41,6 +41,16 @@ void Cours::afficherDepotsEffectues(int index){
     }
 }
 
+void Cours::setInscription(int nbMaxEtud, struct tm ouverture, struct tm fermeture){
+    if(inscription == NULL){
+        inscription = new Inscription(nbMaxEtud, ouverture, fermeture);
+    }
+    else{
+        std::cout << "l'inscription est deja initialisee" << std::endl;
+    }
+}
+
+
 void Cours::supp(){
     int i, taille;
     taille = listeDepot.size();
