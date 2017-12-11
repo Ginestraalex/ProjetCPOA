@@ -10,3 +10,7 @@ Administrateur::Administrateur(std::string name, std::string identifier, std::st
     motDePasse = password;
 }
 
+std::string Administrateur::getStringSauvegarde(){
+    return "ADMINISTRATEUR " +nom + " " + id + " " + motDePasse;
+}
+

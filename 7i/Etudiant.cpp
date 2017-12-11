@@ -9,3 +9,8 @@ Etudiant::Etudiant(std::string name, std::string identifier, std::string passwor
     id = identifier;
     motDePasse = password;
 }
+
+
+std::string Etudiant::getStringSauvegarde(){
+    return "ETUDIANT " +nom + " " + id + " " + motDePasse;
+}

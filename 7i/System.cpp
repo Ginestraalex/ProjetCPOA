@@ -1,5 +1,4 @@
 #include "System.h"
-#include <typeinfo>
 
 System::System(){
 
@@ -128,7 +127,7 @@ void System::sauvegarderIdentifiants(){
     std::ofstream fichierSortie("NouvelleListeID.txt",std::ios::app);
     if(fichierSortie){
       for( i = 0 ; i < taille ; i++){
-	fichierSortie << typeid(*listeDesUtilisateurs[i]).name() << " " +listeDesUtilisateurs[i]->getStringSauvegarde() << std::endl;
+	fichierSortie << listeDesUtilisateurs[i]->getStringSauvegarde() << std::endl;
       }
       fichierSortie.close();
     }
@@ -140,7 +139,7 @@ void System::sauvegarderIdentifiants(){
     std::ofstream fichierSortie("NouvelleListeID.txt",std::ios::out);
     if(fichierSortie){
       for( i = 0 ; i < taille ; i++){
-	fichierSortie << typeid(*listeDesUtilisateurs[i]).name() << " " +listeDesUtilisateurs[i]->getStringSauvegarde() << std::endl;
+	fichierSortie << listeDesUtilisateurs[i]->getStringSauvegarde() << std::endl;
       }
       fichierSortie.close();
     }
@@ -210,6 +209,8 @@ int main(){
     monSys->getCours(0)->setInscription(20, ouv,ferm);
     monSys->getCours(0)->inscrire(etud);
     std::cout << "Resultat du test pour voir si Alex est inscrit: " << monSys->getCours(0)->estInscrit(etud) << std::endl;
+    monSys->sauvegarderIdentifiants();
+
     monSys->supp();
     delete monSys;
    
@@ -221,7 +222,6 @@ int main(){
     std::cout << "le resultat de la connexion avec la fonction administrateur de amdinID1 avec le mdp adminMDP1 est : " << res << std::endl;
     res = monSys->connexion("AMDINISTRATEUR", "chien", "chat");
     std::cout << "le resultat de la connexion avec la fonction administrateur de chien avec le mdp chat est : " << res << std::endl;
-    monSys->sauvegarderIdentifiants();
     monSys->supp();
     delete monSys;
     std::cout << "=== fin des tests ===" << std::endl;

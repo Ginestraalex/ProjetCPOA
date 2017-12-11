@@ -9,6 +9,8 @@ class Enseignant : public Utilisateur{
 public:
     Enseignant();
     Enseignant(std::string name, std::string identifier, std::string password);
+    
+    std::string getStringSauvegarde();
 
 };
 #endif

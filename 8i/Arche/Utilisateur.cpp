@@ -22,6 +22,10 @@ bool Utilisateur::estLeMDP(std::string str){
     return !motDePasse.compare(str);
 }
 
+std::string Utilisateur::getStringSauvegarde() {
+  return "UTILISATEUR " +nom + " " + id + " " + motDePasse;
+}
+
 
 std::string Utilisateur::toString(){
     return "nom: " + nom + " id: " + id + " mdp: " + motDePasse;

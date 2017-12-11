@@ -10,3 +10,7 @@ Enseignant::Enseignant(std::string name, std::string identifier, std::string pas
     motDePasse = password;
 }
 
+std::string Enseignant::getStringSauvegarde(){
+    return "ENSEIGNANT " +nom + " " + id + " " + motDePasse;
+}
+

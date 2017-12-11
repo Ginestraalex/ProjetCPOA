@@ -8,6 +8,21 @@ Cours::Cours(){
 Cours::Cours(std::string nom, Enseignant* prof){
     nomCours = nom;
     profReferent = prof;
+    struct tm ouv, ferm;
+    ouv.tm_sec = 0;
+    ouv.tm_min = 0;
+    ouv.tm_hour = 0;
+    ouv.tm_mday = 1;
+    ouv.tm_mon = 0;
+    ouv.tm_year = 100;
+    
+    ferm.tm_sec = 0;
+    ferm.tm_min = 0;
+    ferm.tm_hour = 0;
+    ferm.tm_mday = 1;
+    ferm.tm_mon = 0;
+    ferm.tm_year = 130;
+    inscription = new Inscription(100, ouv, ferm);
 }
     
 std::string Cours::getNomCours(){
@@ -52,21 +67,17 @@ void Cours::afficherDepotsEffectues(int index){
 }
 
 void Cours::inscrire(Etudiant* etud){
-    if(inscription == NULL){
-        std::cout << "Il n'est pas encore possible de s'inscire a ce cours";
-    }
-    else{
-        inscription->inscrire(etud);
-    }
+  if(inscription == NULL){
+    std::cout << "Il n'est pas encore possible de s'inscire a ce cours";
+  }
+  else{
+    inscription->inscrire(etud);
+  }
 }
 
 void Cours::setInscription(int nbMaxEtud, struct tm ouverture, struct tm fermeture){
-    if(inscription == NULL){
-        inscription = new Inscription(nbMaxEtud, ouverture, fermeture);
-    }
-    else{
-        std::cout << "l'inscription est deja initialisee" << std::endl;
-    }
+  delete inscription;
+  inscription = new Inscription(nbMaxEtud, ouverture, fermeture);
 }
 
 
