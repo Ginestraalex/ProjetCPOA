@@ -18,6 +18,15 @@ std::string Cours::getNomProfReferent(){
     return profReferent->getNom();
 }
 
+bool Cours::estInscrit(Etudiant* etud){
+    if(inscription == NULL){
+        return false;
+    }
+    else{
+       return inscription->estInscrit(etud);
+    }
+}
+
 void Cours::creerDepot(std::string nomDepot, struct tm ouverture, struct tm fermeture){
     listeDepot.push_back(new Depot(nomDepot, ouverture, fermeture));
 }
@@ -41,6 +50,15 @@ void Cours::afficherDepotsEffectues(int index){
     }
 }
 
+void Cours::inscrire(Etudiant* etud){
+    if(inscription == NULL){
+        std::cout << "Il n'est pas encore possible de s'inscire a ce cours";
+    }
+    else{
+        inscription->inscrire(etud);
+    }
+}
+
 void Cours::setInscription(int nbMaxEtud, struct tm ouverture, struct tm fermeture){
     if(inscription == NULL){
         inscription = new Inscription(nbMaxEtud, ouverture, fermeture);
@@ -56,5 +74,8 @@ void Cours::supp(){
     taille = listeDepot.size();
     for(i = 0 ; i < taille ; i++){
         delete listeDepot[i];
+    }
+    if(inscription != NULL){
+        delete inscription;
     }
 }

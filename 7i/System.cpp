@@ -171,9 +171,12 @@ int main(){
     ferm.tm_year = 118;
     monSys->getCours(0)->creerDepot("Depot 1", ouv, ferm);
     monSys->getCours(0)->afficherListeDepot();
-    monSys->getCours(0)->deposer(0, new Etudiant("Alex","idAlex","mdpAlex"), "nomFichier");
+    Etudiant* etud = new Etudiant("Alex","idAlex","mdpAlex");
+    monSys->getCours(0)->deposer(0, etud, "nomFichier");
     monSys->getCours(0)->afficherDepotsEffectues(0);
-    
+    monSys->getCours(0)->setInscription(20, ouv,ferm);
+    monSys->getCours(0)->inscrire(etud);
+    std::cout << "Resultat du test pour voir si Alex est inscrit: " << monSys->getCours(0)->estInscrit(etud) << std::endl;
     monSys->supp();
     delete monSys;
    

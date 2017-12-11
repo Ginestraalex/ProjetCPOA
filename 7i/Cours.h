@@ -12,6 +12,8 @@ public:
     std::string getNomProfReferent();
     void creerDepot(std::string nomDepot, struct tm ouverture, struct tm fermeture);
     void deposer(int index, Etudiant* etud, std::string nomFichier);
+    void inscrire(Etudiant* etud);
+    bool estInscrit(Etudiant* etud);
     void afficherListeDepot();
     void afficherDepotsEffectues(int index);
     void setInscription(int nbMaxEtud, struct tm ouverture, struct tm fermeture);
