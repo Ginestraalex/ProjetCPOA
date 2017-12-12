@@ -10,6 +10,7 @@ public:
     Interface(std::string nomFichier);
     
     void sauv();
+    void supp();
        
 protected:
     System* monSys;
