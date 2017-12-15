@@ -10,5 +10,7 @@ public:
     Etudiant(std::string name, std::string identifier, std::string password);
     
     std::string getStringSauvegarde();
+    bool connexion(std::string fonction, std::string Id, std::string mdp);
+
 };
 #endif

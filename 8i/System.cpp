@@ -47,7 +47,7 @@ bool System::connexion(std::string fonction, std::string id, std::string pwd){
     int taille = listeDesUtilisateurs.size();
     bool pasTrouve = true;
     while (i < taille && pasTrouve){
-        if(listeDesUtilisateurs[i]->estLID(id) && listeDesUtilisateurs[i]->estLeMDP(pwd)){
+        if(listeDesUtilisateurs[i]->connexion(fonction, id, pwd)){
             pasTrouve = false;
             utilisateurCourrant = listeDesUtilisateurs[i];
             return true;

@@ -22,6 +22,13 @@ bool Utilisateur::estLeMDP(std::string str){
     return !motDePasse.compare(str);
 }
 
+bool Utilisateur::connexion(std::string fonction, std::string Id, std::string mdp){
+    if(!id.compare(Id) && !motDePasse.compare(mdp) && !fonction.compare("UTILISATEUR")){
+        return true;
+    }
+    return false;
+}
+
 std::string Utilisateur::getStringSauvegarde() {
   return "UTILISATEUR " +nom + " " + id + " " + motDePasse;
 }

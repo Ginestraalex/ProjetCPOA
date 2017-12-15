@@ -12,7 +12,8 @@ public:
     std::string getNom();
     bool estLID(std::string str);
     bool estLeMDP(std::string str);
-    virtual std::string getStringSauvegarde() ;
+    virtual bool connexion(std::string fonction, std::string Id, std::string mdp);
+    virtual std::string getStringSauvegarde();
     std::string toString();
     
 protected:

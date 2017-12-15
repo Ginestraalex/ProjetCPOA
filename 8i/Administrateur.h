@@ -9,6 +9,7 @@ public:
     Administrateur();
     Administrateur(std::string name, std::string identifier, std::string password);
     
+    bool connexion(std::string fonction, std::string Id, std::string mdp);
     std::string getStringSauvegarde();
 };
 #endif
