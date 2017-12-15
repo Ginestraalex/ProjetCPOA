@@ -90,6 +90,10 @@ void System::proposerCours(std::string nomCours, Enseignant* enseignantReferent)
 }
 
 
+std::string System::getNomUtilisateurCourrant(){
+    return utilisateurCourrant->getNom();
+}
+
 void System::afficherListeCours(){
     int i, taille;
     taille = listeDesCours.size();
@@ -112,9 +116,16 @@ void System::afficherListePropositionsCours(){
 
 
 void System::accepterPropositionCours(int index){
-    ajouterCours(new Cours(listePropositionCours[index]->getNomCours(),listePropositionCours[index]->getProfReferent()));
-    delete listePropositionCours[index];
-    listePropositionCours.erase(listePropositionCours.begin() + index);
+    if( index >= 0 && index < listePropositionCours.size()){
+        ajouterCours(new Cours(listePropositionCours[index]->getNomCours(),listePropositionCours[index]->getProfReferent()));
+        delete listePropositionCours[index];
+        listePropositionCours.erase(listePropositionCours.begin() + index);
+        
+    }
+    else{
+        std::cout << "Erreur la valeur entree n'est pas valide." << std::endl;
+    }
+    
 }
 
 void System::sauvegarderIdentifiants(){

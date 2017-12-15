@@ -19,6 +19,7 @@ public:
     void proposerCours(std::string nomCours, Enseignant* enseignantReferent);
     void accepterPropositionCours(int index);
     
+    std::string getNomUtilisateurCourrant();
     void afficherListeCours();
     void afficherListePropositionsCours();
     void sauvegarderIdentifiants();

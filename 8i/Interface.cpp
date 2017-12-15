@@ -24,7 +24,7 @@ bool Interface::pageDeConnexion(){
         std::cout << "Voulez-vous quitter ? (O = oui, N = non) " << std::endl;
         std::cin >> c;
     }
-    std::cout << "Au revoir !";
+    std::cout << "Au revoir !" << std::endl;
     return false;
 }
 
@@ -36,6 +36,7 @@ void Interface::connexion(){
     std::cin >> c;
     while(c != 'A' && c != 'a' && c != 'T' && c != 't' && c != 'S' && c != 's'){
         std::cout << "Erreur: entrez A ou T ou S" << std::endl;
+        std::cin >> c;
     }
     std::cout << "Entrez votre identifiant:" << std::endl;
     std::cin >> id;
@@ -71,17 +72,35 @@ void Interface::connexion(){
 
 
 void Interface::homepageAdministrateur(){
-    
+    std::cout << "Page administrateur: " << std::endl << "Bienvenue " + monSys->getNomUtilisateurCourrant() + ","<< std::endl;
+    char c('z');
+    int i;
+    while(c != 'q' && c != 'Q'){
+        std::cout << "Que voulez-vous faire ?" << std::endl << "Afficher la liste des propositions de cours (L)" << std::endl << "Accepter des propositions de cours (A)" << std::endl << "Vous deconnecter (Q)" << std::endl;
+        std::cin >> c;
+        if(c != 'A' && c != 'a' && c != 'q' && c != 'Q' && c != 'l' && c != 'L'){
+            std::cout << "erreur dans la selection." << std::endl << "que voulez-vous faire ?" << std::endl << "Afficher la liste des propositions de cours (L)" << std::endl << "Accepter des propositions de cours (A)" << std::endl << "Vous deconnecter (Q)" << std::endl;
+        }
+        else if(c == 'l' || c == 'L'){
+            monSys->afficherListePropositionsCours();
+        }
+        else if(c == 'a' || c == 'A'){
+            std::cout << "Quel est le numero de la proposition de cours que vous souhaitez accepter ?" << std::endl;
+            std::cin >> i;
+            monSys->accepterPropositionCours(i);
+        }
+    }
+    std::cout << "Au revoir!" << std::endl;
 }
 
 
 void Interface::homepageEnseignant(){
-    
+    std::cout << "page Ens " << std::endl;
 }
 
 
 void Interface::homepageEtudiant(){
-    
+    std::cout << "page Etu " << std::endl;
 }
 
 
@@ -109,14 +128,11 @@ int main(){
     std::cin >> tabChar;
     std::string str(tabChar);
     inter = new Interface(str);
-    inter->sauv();
   }
   else{
     inter = new Interface("listeValide.txt");  
-    inter->sauv();
   }
-  
-
+    inter->pageDeConnexion();
     inter->supp();
     delete inter;
   return 0;
