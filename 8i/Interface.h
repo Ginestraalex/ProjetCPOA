@@ -15,8 +15,11 @@ public:
     void homepageEnseignant();
     void homepageEtudiant();
     void editerCours(Cours* monCours);
+    void accederCours(Cours* monCours);
+    void ajouterContenu(Cours* monCours);
     void proposerCours();
     void creerDepot(Cours* monCours);
+    void noterDepot(Depot* leDepot);
     void sauv();
     void supp();
        

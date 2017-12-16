@@ -44,6 +44,10 @@ void Depot::afficherLesDepots(){
     }
 }
 
+bool Depot::estLeNom(std::string nom){
+    return !nomDepot.compare(nom);
+}
+
 bool Depot::estEnAvanceOuRetard(){
     double second;
     second = difftime(time(NULL), mktime(&dateFermeture));

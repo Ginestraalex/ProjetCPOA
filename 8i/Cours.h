@@ -2,6 +2,11 @@
 #define DEF_COURS
 #include "Inscription.cpp"
 
+struct contenu{
+    std::string nomContenu;
+    std::string cheminFichier;
+};
+
 class Cours{
     
 public:
@@ -17,6 +22,10 @@ public:
     void afficherListeDepot();
     void afficherDepotsEffectues(int index);
     void setInscription(int nbMaxEtud, struct tm ouverture, struct tm fermeture);
+    Depot* getDepot(int index);
+    bool depotExiste(std::string nom);
+    void ajouterDuContenu(std::string leNom, std::string cheminAcces);
+    bool contenuExiste(std::string nom);
     void supp();
     
 protected:
@@ -24,6 +33,7 @@ protected:
     Enseignant* profReferent;
     Inscription* inscription;
     std::vector<Depot*> listeDepot;
+    std::vector<struct contenu> listeContenu;
 };
 
 #endif

@@ -55,7 +55,7 @@ void Cours::afficherListeDepot(){
     taille = listeDepot.size();
     std::cout << "Liste des depots:" << std::endl;
     for(i = 0 ; i < taille ; i++){
-        std::cout << listeDepot[i]->toString() << std::endl;
+        std::cout << to_string(i)+": "+listeDepot[i]->toString() << std::endl;
     }
 }
 
@@ -80,6 +80,55 @@ void Cours::setInscription(int nbMaxEtud, struct tm ouverture, struct tm fermetu
   inscription = new Inscription(nbMaxEtud, ouverture, fermeture);
 }
 
+Depot* Cours::getDepot(int index){
+    if(index >= 0 &&  index < listeDepot.size()){
+        return listeDepot[index];
+    }
+    return new Depot();
+}
+
+bool Cours::depotExiste(std::string nom){
+    int i, taille;
+    bool existe = false;
+    i = 0;
+    taille = listeDepot.size();
+    while(i < taille && !existe){
+        if(listeDepot[i]->estLeNom(nom)){
+            existe = true;
+        }
+        i++;
+    }
+    return existe;
+}
+
+
+void Cours::ajouterDuContenu(std::string leNom, std::string cheminAcces){
+    if(contenuExiste(leNom)){
+        std::cout << "Erreur : Le nom choisit pour ce contenu existe deja." << std::endl;
+    }
+    else{
+        struct contenu cont;
+        cont.nomContenu = leNom;
+        cont.cheminFichier = cheminAcces;
+        listeContenu.push_back(cont);
+        std::cout << "Le contenu a bien ete ajoute" << std::endl;
+    }
+}
+
+bool Cours::contenuExiste(std::string nom){
+    int i, taille;
+    taille = listeContenu.size();
+    i = 0;
+    bool existe = false;
+    while(i < taille && !existe){
+        if(!listeContenu[i].nomContenu.compare(nom))
+        {
+            existe = true;
+        }
+        i++;
+    }
+    return existe;
+}
 
 void Cours::supp(){
     int i, taille;

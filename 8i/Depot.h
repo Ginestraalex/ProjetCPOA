@@ -18,6 +18,7 @@ public:
     Depot();
     Depot(std::string nomDuDepot, struct tm DOuverture, struct tm DFermeture);
     
+    bool estLeNom(std::string nom);
     bool estEnAvanceOuRetard();
     void ajouterDepot(std::string nomFichier, Etudiant* etud);
     void afficherLesDepots();
