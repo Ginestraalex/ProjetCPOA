@@ -73,12 +73,10 @@ Cours* System::getCours(int index){
 Cours* System::getCours(std::string nomCours){
     int i = 0;
     int taille = listeDesCours.size();
-    bool pasTrouve = true;
-    while(i < taille && pasTrouve){
+    for(i = 0 ; i < taille ; i++){
         if(!listeDesCours[i]->getNomCours().compare(nomCours)){
             return listeDesCours[i];
         }
-        i++;
     }
     std::cout << "le cours demande n existe pas" << std::endl;
     Cours *coursTemp = new Cours();
@@ -86,7 +84,21 @@ Cours* System::getCours(std::string nomCours){
 }
 
 void System::proposerCours(std::string nomCours, Enseignant* enseignantReferent){
-    listePropositionCours.push_back(new PropositionDeCours(nomCours, enseignantReferent));
+    bool trouve = false;
+    int i = 0;
+    int taille = listeDesCours.size();
+    while(i < taille && !trouve){
+        if(!listeDesCours[i]->getNomCours().compare(nomCours)){
+            trouve = true;
+        }
+        i++;
+    }
+    if(trouve){
+        std::cout << "Erreur ! Le nom choisi pour la proposition de cours existe deja." << std::endl;
+    }
+    else{
+        listePropositionCours.push_back(new PropositionDeCours(nomCours, enseignantReferent));
+    }
 }
 
 
@@ -99,13 +111,24 @@ void System::afficherListeCours(){
     taille = listeDesCours.size();
     std::cout << "Liste des cours du systeme:" << std::endl;
     for(i = 0 ; i < taille ; i++){
-        std::cout << to_string(i)+": COURS = " +listeDesCours[i]->getNomCours() + "   PROF REFERENT = " +listeDesCours[i]->getNomProfReferent() << std::endl;
+        std::cout << to_string(i)+": COURS = " + listeDesCours[i]->getNomCours() + "   PROF REFERENT = " +listeDesCours[i]->getNomProfReferent() << std::endl;
     }
     std::cout << std::endl;
 }
 
+void System::afficherListeCoursUtilisateurCourrant(){
+    int i, taille;
+    taille = listeDesCours.size();
+    std::cout << "Liste des vos cours:" << std::endl;
+    for(i = 0 ; i < taille ; i++){
+        if(!utilisateurCourrant->getNom().compare(listeDesCours[i]->getNomProfReferent())){
+            std::cout << to_string(i)+": COURS = " +listeDesCours[i]->getNomCours() + "   PROF REFERENT = " +listeDesCours[i]->getNomProfReferent() << std::endl;
+        }
+    }
+}
+
 void System::afficherListePropositionsCours(){
-    std::cout << "la liste des propositions de cours est la suivate" << std::endl;
+    std::cout << "Liste des propositions de cours :" << std::endl;
     int i, tailleListe;
     tailleListe = listePropositionCours.size();
     for(i = 0 ; i < tailleListe ; i++){
@@ -125,7 +148,15 @@ void System::accepterPropositionCours(int index){
     else{
         std::cout << "Erreur la valeur entree n'est pas valide." << std::endl;
     }
-    
+}
+
+void System::inscrire(Cours* leCours){
+    if(!leCours->estInscrit((Etudiant*)utilisateurCourrant)){
+        leCours->inscrire((Etudiant*)utilisateurCourrant);
+    }
+    else{
+        std::cout << "L'etudiant est deja sur la liste d'inscription de ce cours" << std::endl;
+    }
 }
 
 void System::sauvegarderIdentifiants(){

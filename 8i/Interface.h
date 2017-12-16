@@ -14,6 +14,9 @@ public:
     void homepageAdministrateur();
     void homepageEnseignant();
     void homepageEtudiant();
+    void editerCours(Cours* monCours);
+    void proposerCours();
+    void creerDepot(Cours* monCours);
     void sauv();
     void supp();
        

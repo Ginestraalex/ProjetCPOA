@@ -18,9 +18,11 @@ public:
     Cours* getCours(std::string nomCours);
     void proposerCours(std::string nomCours, Enseignant* enseignantReferent);
     void accepterPropositionCours(int index);
+    void inscrire(Cours* leCours);
     
     std::string getNomUtilisateurCourrant();
     void afficherListeCours();
+    void afficherListeCoursUtilisateurCourrant();
     void afficherListePropositionsCours();
     void sauvegarderIdentifiants();
     
