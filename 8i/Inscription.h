@@ -12,6 +12,7 @@ public:
     
     void inscrire(Etudiant* etud);
     bool estInscrit(Etudiant* etud);
+    bool aAcces(Etudiant* etud);
     
 protected:
     int nombreMaximumEtudiant;

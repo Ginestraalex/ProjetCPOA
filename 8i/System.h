@@ -16,9 +16,11 @@ public:
     void ajouterCours(Cours* cours);
     Cours* getCours(int index);
     Cours* getCours(std::string nomCours);
+    Utilisateur* getUtilisateurCourrant();
     void proposerCours(std::string nomCours, Enseignant* enseignantReferent);
     void accepterPropositionCours(int index);
     void inscrire(Cours* leCours);
+    bool existePropositionCours(std::string nom);
     
     std::string getNomUtilisateurCourrant();
     void afficherListeCours();

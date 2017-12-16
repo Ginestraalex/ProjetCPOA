@@ -109,7 +109,7 @@ void Interface::homepageEnseignant(){
         else if(c == 'a' || c == 'A'){
             std::cout << "Quel est le numero du cours auqel vous souhaitez acceder ?" << std::endl;
             std::cin >> i;
-            editerCours(monSys->getCours(i)); // fct a continuer
+            editerCours(monSys->getCours(i));
         }
         else if(c == 'p' || c == 'P'){
             //proposer cours
@@ -138,7 +138,7 @@ void Interface::homepageEtudiant(){
         else if(c == 'a' || c == 'A'){
             std::cout << "Quel est le numero de la proposition de cours que vous souhaitez acceder ?" << std::endl;
             std::cin >> i;
-            accederCours(monSys->getCours(i));
+            accederCours(monSys->getCours(i), (Etudiant*) monSys->getUtilisateurCourrant());
         }
         else if(c == 's' || c == 'S'){
             std::cout << "Quel est le nom du cours auquel vous voulez vous inscrire ?" << std::endl;
@@ -161,29 +161,65 @@ void Interface::editerCours(Cours* monCours){
     while(c != 'q' && c != 'Q'){
         std::cout << "Que voulez vous faire sur le cours " + monCours->getNomCours() +":" << std::endl << "Ajouter du contenu (A)" << std::endl << "Creer un depot (C)" << std::endl << "Noter un depot (N)" << std::endl << "Quitter l'editeur de cours (Q)" << std::endl;
         std::cin >> c;
-        if(c != 'a' && c != 'A'){
+        if(c == 'a' || c != 'A'){
             ajouterContenu(monCours);
         }
-        else if(c != 'C' && c != 'c'){
+        else if(c == 'C' || c == 'c'){
             creerDepot(monCours);
         }
-        else if(c != 'n' && c != 'N'){
+        else if(c == 'n' || c == 'N'){
             std::cout << "Quel est le numero du depot que vous desirez noter ?" << std::endl;
             std::cin >> numDepot;
-            noterDepot(monCours->getDepot(numDepot));
+            noterDepot(monCours->getDepot(numDepot)); //a faire
         }
-        else if(c != 'q' && c != 'Q'){
+        else if(c == 'q' || c == 'Q'){
         }
         else{
-            std::cout << std::endl << "Erreur. " ;
+            std::cout << std::endl << "Erreur. ";
         }
     }
 }
 
 
-void Interface::accederCours(Cours* monCours){
-    //a faire
+void Interface::accederCours(Cours* monCours, Etudiant* etud){
+    char c('z');
+    int index;
+    if(monCours->aAcces(etud)){
+        while(c != 'q' && c != 'Q'){
+            std::cout << "Que voulez vous faire sur le cours " + monCours->getNomCours() +":" << std::endl << "Avoir la liste des contenus (C)" << std::endl << "Avoir la liste des depots (D)" << std::endl << "Rendre un travail pour un depot (R)" << std::endl << "Quitter l'editeur de cours (Q)" << std::endl;
+            std::cin >> c;
+            if(c == 'd' || c == 'D'){
+                monCours->afficherListeDepots();
+            }
+            else if(c == 'c' || c == 'C'){
+                monCours->afficherListeContenus();
+            }
+            else if(c == 'R' || c == 'r'){
+                std::cout << "Quel est le numero du depot auquel vous voulez acceder ?" << std::endl;
+                std::cin >> index;
+                if(monCours->depotExiste(index)){
+                    rendreTravail(monCours->getDepot(index), etud);
+                }
+            }
+            else if(c == 'q' || c == 'Q'){
+            }
+            else{
+                std::cout << std::endl << "Erreur. ";
+            }
+        }
+    }
+    else{
+        std::cout << "Erreur. Vous n'avez pas acces a ce cours" << std::endl;
+    }
 }
+
+void Interface::rendreTravail(Depot* leDepot, Etudiant* etud){
+    char cFichier[30];
+    std::cout << "Donner le chemin d'acces au fichier" << std::endl;
+    std::cin >> cFichier;
+    leDepot->ajouterDepot(cFichier, etud);
+}
+
 
 
 void Interface::ajouterContenu(Cours* monCours){
@@ -197,10 +233,56 @@ void Interface::ajouterContenu(Cours* monCours){
 }
 
 
-void Interface::proposerCours(){
+void Interface::proposerCours(Enseignant* ensei){
+    char cNomCours[20];
+    std::cout << "Quel sera le nom de votre cours ?" << std::endl;
+    std::cin >> cNomCours;
+    if(monSys->existePropositionCours(cNomCours)){
+        std::cout << "Le nom choisit pour le cours existe deja" << std::endl;
+    }
+    else{
+        monSys->proposerCours(cNomCours,(Enseignant*)monSys->getUtilisateurCourrant());
+        std::cout << "La proposition de cours est faite" << std::endl;
+    }
+}
+
+void Interface::noterDepot(Depot* leDepot){
     //a faire
 }
 
+void Interface::setInscription(Cours* cours){
+    int nbEtud;
+    struct tm ouv, ferm;
+    std::cout << "Quel est le nombre maximum d'etuidant pouvait assister au cours" << std::endl;
+    std::cin >> nbEtud;
+    std::cout << "ouverture des inscriptions:" << "annee ?" << std::endl;
+    std::cin >> ouv.tm_year;
+    ouv.tm_year -= 1900;
+    std::cout << "mois ? (chiffre: janvier = 0 , decembre = 11)" << std::endl;
+    std::cin >> ouv.tm_mon;
+    std::cout << "jour ?" << std::endl;
+    std::cin >> ouv.tm_mday;
+    std::cout << "heure ?" << std::endl;
+    std::cin >> ouv.tm_hour;
+    std::cout << "minute ?" << std::endl;
+    std::cin >> ouv.tm_min;
+    ouv.tm_sec = 0;
+    
+    std::cout << "fermeture des inscriptions:" << "annee ?" << std::endl;
+    std::cin >> ferm.tm_year;
+    ferm.tm_year -= 1900;
+    std::cout << "mois ? (chiffre: janvier = 0 , decembre = 11)" << std::endl;
+    std::cin >> ferm.tm_mon;
+    std::cout << "jour ?" << std::endl;
+    std::cin >> ferm.tm_mday;
+    std::cout << "heure ?" << std::endl;
+    std::cin >> ferm.tm_hour;
+    std::cout << "minute ?" << std::endl;
+    std::cin >> ferm.tm_min;
+    ferm.tm_sec = 0;
+    cours->setInscription(nbEtud, ouv, ferm);
+    
+}
 
 void Interface::creerDepot(Cours* monCours){
     char c[20];
@@ -240,11 +322,6 @@ void Interface::creerDepot(Cours* monCours){
         std::cout << "Erreur, un depot portant ce nom existe deja" << std::endl;
     }
 }
-
-void Interface::noterDepot(Depot* leDepot){
-    //a faire
-}
-
 
 void Interface::sauv(){
   monSys->sauvegarderIdentifiants();

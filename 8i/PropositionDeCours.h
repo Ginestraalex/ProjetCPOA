@@ -13,6 +13,8 @@ public:
     std::string getNomProfReferent();
     Enseignant* getProfReferent();
     
+    bool estLeNom(std::string nom);
+    
 protected:
     std::string nomCours;
     Enseignant* profReferent;

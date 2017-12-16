@@ -83,6 +83,10 @@ Cours* System::getCours(std::string nomCours){
     return coursTemp;
 }
 
+Utilisateur* System::getUtilisateurCourrant(){
+    return utilisateurCourrant;
+}
+
 void System::proposerCours(std::string nomCours, Enseignant* enseignantReferent){
     bool trouve = false;
     int i = 0;
@@ -158,6 +162,21 @@ void System::inscrire(Cours* leCours){
         std::cout << "L'etudiant est deja sur la liste d'inscription de ce cours" << std::endl;
     }
 }
+
+bool System::existePropositionCours(std::string nom){
+    int i, taille;
+    bool trouve = false;
+    taille = listePropositionCours.size();
+    i = 0;
+    while(i < taille && !trouve){
+        if(listePropositionCours[i]->estLeNom(nom)){
+            trouve = true;
+        }
+        i++;
+    }
+    return trouve;
+}
+
 
 void System::sauvegarderIdentifiants(){
   int i, taille;

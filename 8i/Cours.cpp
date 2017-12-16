@@ -50,7 +50,7 @@ void Cours::deposer(int index, Etudiant* etud, std::string nomFichier){
     listeDepot[index]->ajouterDepot(nomFichier, etud);
 }
 
-void Cours::afficherListeDepot(){
+void Cours::afficherListeDepots(){
     int i, taille;
     taille = listeDepot.size();
     std::cout << "Liste des depots:" << std::endl;
@@ -58,6 +58,16 @@ void Cours::afficherListeDepot(){
         std::cout << to_string(i)+": "+listeDepot[i]->toString() << std::endl;
     }
 }
+
+void Cours::afficherListeContenus(){
+    int i, taille;
+    taille = listeContenu.size();
+    std::cout << "Liste des contenus du cours:" << std::endl;
+    for(i = 0 ; i < taille ; i++){
+        std::cout << to_string(i) + ": " +listeContenu[i].nomContenu << std::endl;
+    }
+}
+
 
 void Cours::afficherDepotsEffectues(int index){
   int taille = listeDepot.size();
@@ -101,6 +111,13 @@ bool Cours::depotExiste(std::string nom){
     return existe;
 }
 
+bool Cours::depotExiste(int index){
+    if(index >= 0 && index < listeDepot.size()){
+        return true;
+    }
+    return false;
+}
+
 
 void Cours::ajouterDuContenu(std::string leNom, std::string cheminAcces){
     if(contenuExiste(leNom)){
@@ -129,6 +146,11 @@ bool Cours::contenuExiste(std::string nom){
     }
     return existe;
 }
+
+bool Cours::aAcces(Etudiant* etud){
+    return inscription->aAcces(etud);
+}
+
 
 void Cours::supp(){
     int i, taille;

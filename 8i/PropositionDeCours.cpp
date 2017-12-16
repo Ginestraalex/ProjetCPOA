@@ -22,3 +22,6 @@ Enseignant* PropositionDeCours::getProfReferent(){
     return profReferent;
 }
 
+bool PropositionDeCours::estLeNom(std::string nom){
+    return !nomCours.compare(nom);
+}

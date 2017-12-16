@@ -19,13 +19,18 @@ public:
     void deposer(int index, Etudiant* etud, std::string nomFichier);
     void inscrire(Etudiant* etud);
     bool estInscrit(Etudiant* etud);
-    void afficherListeDepot();
+    
+    void afficherListeDepots();
+    void afficherListeContenus();
     void afficherDepotsEffectues(int index);
+    
     void setInscription(int nbMaxEtud, struct tm ouverture, struct tm fermeture);
     Depot* getDepot(int index);
     bool depotExiste(std::string nom);
+    bool depotExiste(int index);
     void ajouterDuContenu(std::string leNom, std::string cheminAcces);
     bool contenuExiste(std::string nom);
+    bool aAcces(Etudiant* etud);
     void supp();
     
 protected:

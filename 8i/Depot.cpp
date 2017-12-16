@@ -32,6 +32,7 @@ void Depot::ajouterDepot(std::string nomDuFichierRendu, Etudiant* etud){
         monDepot.etudiant = etud;
         monDepot.nomFichier = nomDuFichierRendu;
         listeDepots.push_back(monDepot);
+        std::cout << "Le travail a bien ete depose" << std::endl;
     }
 }
 
