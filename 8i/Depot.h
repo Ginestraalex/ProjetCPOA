@@ -10,6 +10,7 @@
 struct depotEtudiant{
     Etudiant* etudiant;
     std::string nomFichier;
+    std::string note;
 };
 
 class Depot{
@@ -22,6 +23,7 @@ public:
     bool estEnAvanceOuRetard();
     void ajouterDepot(std::string nomFichier, Etudiant* etud);
     void afficherLesDepots();
+    void noter(int index, std::string note);
     std::string toString();
     
 protected:

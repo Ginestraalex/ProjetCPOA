@@ -11,6 +11,7 @@ public:
     Inscription(int nbMaxEtud, struct tm ouvertureInsc, struct tm fermetureInsc);
     
     void inscrire(Etudiant* etud);
+    bool inscriptionEncoreOuverte();
     bool estInscrit(Etudiant* etud);
     bool aAcces(Etudiant* etud);
     

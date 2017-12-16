@@ -32,10 +32,10 @@ void Interface::connexion(){
     char c;
     char id[20];
     char mdp[20];
-    std::cout << "Etes-vous un Administateur (A), un Enseignant (T), ou un Etudiant (S)" << std::endl;
+    std::cout << "Etes-vous un Administateur (A), un Enseignant (T), un Etudiant (S) ou entrez (Q) pour quiter" << std::endl;
     std::cin >> c;
-    while(c != 'A' && c != 'a' && c != 'T' && c != 't' && c != 'S' && c != 's'){
-        std::cout << "Erreur: entrez A ou T ou S" << std::endl;
+    while(c != 'A' && c != 'a' && c != 'T' && c != 't' && c != 'S' && c != 's' && c != 'q' && c != 'Q'){
+        std::cout << "Erreur: entrez A ou T ou S ou Q" << std::endl;
         std::cin >> c;
     }
     std::cout << "Entrez votre identifiant:" << std::endl;
@@ -60,13 +60,16 @@ void Interface::connexion(){
             std::cout << "erreur lors de la connexion" << std::endl;
         }
     }
-    else{
+    else if(c == 'S' || c == 's'){
         if(monSys->connexion("ETUDIANT", strID, strMDP)){
             homepageEtudiant();
         }
         else{
             std::cout << "erreur lors de la connexion" << std::endl;
         }
+    }
+    else{
+        std::cout << std::endl << "Au revoir" << std::endl;
     }
 }
 
@@ -112,7 +115,7 @@ void Interface::homepageEnseignant(){
             editerCours(monSys->getCours(i));
         }
         else if(c == 'p' || c == 'P'){
-            //proposer cours
+            proposerCours((Enseignant*)monSys->getUtilisateurCourrant());
         }
         else if(c == 'q' || c == 'Q'){
         }
@@ -130,7 +133,7 @@ void Interface::homepageEtudiant(){
     char str[20];
     int i;
     while(c != 'q' && c != 'Q'){
-        std::cout << "Que voulez-vous faire ?" << std::endl << "Afficher la liste de vos cours (L)" << std::endl << "Acceder a un cours (A)"  << std::endl << "S'inscrire a un nouveau cours (S)" << std::endl << "Vous deconnecter (Q)" << std::endl;
+        std::cout << "Que voulez-vous faire ?" << std::endl << "Afficher la liste de vos cours (L)" << std::endl << "Acceder a un de vos cours (A)"  << std::endl << "Afficher la liste de tous les cours (T)" << std::endl << "S'inscrire a un nouveau cours (S)" << std::endl << "Vous deconnecter (Q)" << std::endl;
         std::cin >> c;
         if(c == 'l' || c == 'L'){
             monSys->afficherListeCoursUtilisateurCourrant();
@@ -144,6 +147,9 @@ void Interface::homepageEtudiant(){
             std::cout << "Quel est le nom du cours auquel vous voulez vous inscrire ?" << std::endl;
             std::cin >> str;
             monSys->inscrire(monSys->getCours(str));
+        }
+        else if(c == 't' || c == 'T'){
+            monSys->afficherListeCours();
         }
         else if(c == 'q' || c == 'Q'){
         }
@@ -159,7 +165,7 @@ void Interface::editerCours(Cours* monCours){
     char c('z');
     int numDepot;
     while(c != 'q' && c != 'Q'){
-        std::cout << "Que voulez vous faire sur le cours " + monCours->getNomCours() +":" << std::endl << "Ajouter du contenu (A)" << std::endl << "Creer un depot (C)" << std::endl << "Noter un depot (N)" << std::endl << "Quitter l'editeur de cours (Q)" << std::endl;
+        std::cout << "Que voulez vous faire sur le cours " + monCours->getNomCours() +":" << std::endl << "Ajouter du contenu (A)" << std::endl << "Creer un depot (C)" << std::endl << "Noter un depot (N)" << std::endl << "Definir les parametres d'inscription (P)" << std::endl << "Quitter l'editeur de cours (Q)" << std::endl;
         std::cin >> c;
         if(c == 'a' || c != 'A'){
             ajouterContenu(monCours);
@@ -170,7 +176,10 @@ void Interface::editerCours(Cours* monCours){
         else if(c == 'n' || c == 'N'){
             std::cout << "Quel est le numero du depot que vous desirez noter ?" << std::endl;
             std::cin >> numDepot;
-            noterDepot(monCours->getDepot(numDepot)); //a faire
+            noterDepot(monCours->getDepot(numDepot));
+        }
+        else if(c == 'p' || c == 'P'){
+            setInscription(monCours);
         }
         else if(c == 'q' || c == 'Q'){
         }
@@ -247,7 +256,29 @@ void Interface::proposerCours(Enseignant* ensei){
 }
 
 void Interface::noterDepot(Depot* leDepot){
-    //a faire
+    char c('z');
+    int numDep;
+    char cNote[5];
+    std::cout << "Notation du depot: " + leDepot->toString() << std::endl;
+    while(c != 'q' && c != 'Q'){
+        std::cout << "Que voulez-vous faire?" << std::endl << "Afficher la liste des depots effectues (A)" << std::endl << "Noter un depot (N)" << std::endl;
+        std::cin >> c;
+        if(c == 'A' || c == 'a'){
+            leDepot->afficherLesDepots();
+        }
+        else if(c == 'N' || c == 'n'){
+            std::cout << "Quel est le numero du depot de l'etudiant que vous souhaitez noter ?" << std::endl;
+            std::cin >> numDep;
+            std::cout << "Quelle note attribuez-vous au depot de l'etudiant ?" << std::endl;
+            std::cin >> cNote;
+            leDepot->noter(numDep, cNote);
+        }
+        else if(c == 'q' || c == 'Q'){
+        }
+        else{
+            std::cout << "Erreur dans la selection. ";
+        }
+    }
 }
 
 void Interface::setInscription(Cours* cours){

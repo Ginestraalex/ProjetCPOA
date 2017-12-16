@@ -14,13 +14,30 @@ Inscription::Inscription(int nbMaxEtud, struct tm ouvertureInsc, struct tm ferme
 
 
 void Inscription::inscrire(Etudiant* etud){
-    if(!estInscrit(etud)){
-        listeEtudiants.push_back(etud);
-    }
-    else{
+    if(estInscrit(etud)){
         std::cout << "Vous etes deja inscrit a ce cours" << std::endl;
     }
+    else if(!inscriptionEncoreOuverte()){
+        std::cout << "Les inscriptions pour ce cours sont fermees." << std::endl;
+    }
+    else{
+        listeEtudiants.push_back(etud);
+    }
 }
+
+bool Inscription::inscriptionEncoreOuverte(){
+    double second;
+    second = difftime(time(NULL), mktime(&fermetureInscription));
+    if(second < 0)
+    {
+        second = difftime(time(NULL), mktime(&ouvertureInscription));
+        if(second > 0){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 bool Inscription::estInscrit(Etudiant* etud){
     bool pasTrouve = true;

@@ -31,6 +31,7 @@ void Depot::ajouterDepot(std::string nomDuFichierRendu, Etudiant* etud){
         struct depotEtudiant monDepot;
         monDepot.etudiant = etud;
         monDepot.nomFichier = nomDuFichierRendu;
+        monDepot.note = "non note";
         listeDepots.push_back(monDepot);
         std::cout << "Le travail a bien ete depose" << std::endl;
     }
@@ -41,7 +42,7 @@ void Depot::afficherLesDepots(){
     taille = listeDepots.size();
     std::cout << "Liste des depots de " + nomDepot << std::endl;
     for(i = 0 ; i < taille ; i++){
-        std::cout << listeDepots[i].etudiant->getNom() << " "+listeDepots[i].nomFichier << std::endl;
+        std::cout << to_string(i) +": " + listeDepots[i].etudiant->getNom() << " "+listeDepots[i].nomFichier << std::endl;
     }
 }
 
@@ -65,5 +66,16 @@ bool Depot::estEnAvanceOuRetard(){
 std::string Depot::toString(){
     return nomDepot;
 }
+
+void Depot::noter(int index, std::string note){
+    if(index < listeDepots.size() && index >= 0){
+        listeDepots[index].note = note;
+        std::cout << "Le depot a bien ete note" << std::endl;
+    }
+    else{
+        std::cout << "Erreur dans la notation du depot" << std::endl;
+    }
+}
+
 
 
